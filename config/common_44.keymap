@@ -13,6 +13,7 @@
 #define LWR 1
 #define RSE 2
 #define ADJ 3
+#define AAA 4
 
 &lt { quick-tap-ms = <200>; };
 &mt { quick-tap-ms = <200>; };
@@ -34,13 +35,13 @@
 // -----------------------------------------------------------------------------------------
 // |  GUI |   ~  |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  |  [   | GUI/] |
 //        | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |CTRL/'|
-//        | LALT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |RALT/\|
+//        | LALT |AAA/Z|  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |AAA//|RALT/\|
 //                           | RSE | SPC | LWR |   | LWR | BSPC | RSE |
                         bindings = <
-   &kp LWIN &kp GRAVE &kp Q &kp W &kp E &kp R &kp T &kp Y         &kp U  &kp I     &kp O   &kp P    &kp LBKT &mt RWIN RBKT
-            &kp LCTRL &kp A &kp S &kp D &kp F &kp G &kp H         &kp J  &kp K     &kp L   &kp SEMI &mt RCTRL SQT
-            &kp LALT  &kp Z &kp X &kp C &kp V &kp B &kp N         &kp M  &kp COMMA &kp DOT &kp FSLH &mt RALT BSLH
-                  &lt RSE TAB &mt LSHFT SPACE &lt LWR RET         &lt LWR ESC &mt RSHFT BSPC &lt RSE DEL
+   &kp LWIN &kp GRAVE &kp Q     &kp W &kp E &kp R &kp T &kp Y         &kp U  &kp I     &kp O     &kp P        &kp LBKT &mt RWIN RBKT
+            &kp LCTRL &kp A     &kp S &kp D &kp F &kp G &kp H         &kp J  &kp K     &kp L     &kp SEMI     &mt RCTRL SQT
+            &kp LALT  &lt AAA Z &kp X &kp C &kp V &kp B &kp N         &kp M  &kp COMMA &kp DOT   &lt AAA FSLH &mt RALT BSLH
+                      &lt RSE TAB &mt LSHFT SPACE &lt LWR RET         &lt LWR ESC &mt RSHFT BSPC &lt RSE DEL
                         >;
                 };
                 lower_layer {
@@ -84,6 +85,20 @@
               &bt BT_CLR   &bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4       &bt BT_SEL 4 &bt BT_SEL 3 &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0   &bt BT_CLR
               &out OUT_TOG &none          &none        &none        &none        &none              &none        &none        &none        &none        &none          &out OUT_TOG
                                                                           &trans &none &trans       &trans &none &trans
+                        >;
+                };
+				aaa_layer {
+                        display-name = "AAA";
+// -----------------------------------------------------------------------------------------
+// |     |      |     |     |     |     |     |   |     |     |     |     |     |      |     |
+//       |      |     |     |  UP |     |     |   |     |     |  UP |     |     |      |
+//       |      |     | LEFT| DOWN| RGHT|     |   |     | LEFT| DOWN| RGHT|     |      |
+//                          |     |     |     |   |     |     |     |
+                        bindings = <
+   &none &none &none &none &none &none &none                             &none &none &none &none &none &none &none
+              &none &none &none &kp UP &none &none                       &none &none &kp UP &none &none &none
+              &none &none &kp LEFT &kp DOWN &kp RIGHT &none              &none &kp LEFT &kp DOWN &kp RIGHT &none &none
+                                   &none &none &none                     &none &none &none
                         >;
                 };
         };
